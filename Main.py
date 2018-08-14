@@ -44,3 +44,5 @@ for leg in legs:
     print "{}: x = {}; y = {}; z = {}".format(leg.j3.name, leg.x, leg.y, leg.z)
 
 vrep.simxStopSimulation(client_id, vrep.simx_opmode_blocking)
+
+# just added one string to check commits through PyCharm
