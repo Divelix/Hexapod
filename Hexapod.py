@@ -206,4 +206,3 @@ class Hexapod:
         # return to initial position
         for i in xrange(0, len(self.legs)):
             self.legs[i].shift(0)
-
