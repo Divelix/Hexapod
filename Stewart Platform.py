@@ -10,12 +10,13 @@ vrep.simxFinish(-1)
 client_id = vrep.simxStart('127.0.0.1', 19997, True, True, 5000, 5)
 
 if client_id != -1:
-    print 'Connected to remote API server'
+    print('Connected to remote API server')
     vrep.simxStartSimulation(client_id, vrep.simx_opmode_blocking)
 else:
     sys.exit('Failed connecting to remote API server')
 
 err, pos_h = vrep.simxGetObjectHandle(client_id, 'Disc', vrep.simx_opmode_oneshot_wait)
+
 
 class Platform:
     def __init__(self):
@@ -155,7 +156,7 @@ class Platform:
             i += 1
 
         t1 = time.time()
-        print 'i:', i, '    time:', t1 - t0, '    F:', self.F0(self.vector)
+        print('i:', i, '    time:', t1 - t0, '    F:', self.F0(self.vector))
         # print self.vector[8] + 1.0389e-1
 
 
@@ -168,4 +169,4 @@ while True:
         pos = vrep.simxGetObjectPosition(client_id, pos_h, -1, vrep.simx_opmode_oneshot)
 
         stew.get_position()
-        print 'error:', stew.vector[8] - pos[1][2] + 1.0389e-1
+        print('error:', stew.vector[8] - pos[1][2] + 1.0389e-1)

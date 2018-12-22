@@ -99,7 +99,7 @@ class Hexapod:
 
     def __init__(self, legs):
         self.legs = legs
-        for i in xrange(0, len(self.angles)):
+        for i in range(0, len(self.angles)):
             legs[i].orientation = self.angles[i]
         self.change_orientation(radians(0))
 
@@ -131,20 +131,20 @@ class Hexapod:
         i = 0
         while i < 1:
             i += 0.001
-            for j in xrange(a, len(self.legs), 2):
+            for j in range(a, len(self.legs), 2):
                 reducer = (1 - i) if i < 0.5 else i  # half way up and half way down
                 self.legs[j].z = self.legs[j].z0 * reducer  # z0 = -0.0919
                 self.legs[j].shift(-i)
-            for j in xrange(b, len(self.legs), 2):
+            for j in range(b, len(self.legs), 2):
                 self.legs[j].shift(i)
             # time.sleep(0.001)
         while i > 0:
             i -= 0.001
-            for j in xrange(b, len(self.legs), 2):
+            for j in range(b, len(self.legs), 2):
                 reducer = (1 - i) if i < 0.5 else i  # half way up and half way down
                 self.legs[j].z = self.legs[j].z0 * reducer  # z0 = -0.0919
                 self.legs[j].shift(i)
-            for j in xrange(a, len(self.legs), 2):
+            for j in range(a, len(self.legs), 2):
                 self.legs[j].shift(-i)
             # time.sleep(0.001)
 
@@ -161,7 +161,7 @@ class Hexapod:
         first_step = True
 
         if gait == "tripod":
-            print "tripod gait on"
+            print("tripod gait on")
             start = time.time()
             while time.time() - start < work_time:
                 if lean:  # lean forward
@@ -178,7 +178,7 @@ class Hexapod:
                     t[int(even)] += step
 
                 # shifting legs
-                for i in xrange(0, len(self.legs)):
+                for i in range(0, len(self.legs)):
                     if i % 2 == int(not even):
                         # move legs off the ground
                         if not lean:
@@ -196,13 +196,13 @@ class Hexapod:
                 time.sleep(inhibitor)
 
         elif gait == "wave":
-            print "wave gait on"
+            print("wave gait on")
 
         elif gait == "ripple":
-            print "ripple gait on"
+            print("ripple gait on")
         else:
             sys.exit("Wrong gait name")
 
         # return to initial position
-        for i in xrange(0, len(self.legs)):
+        for i in range(0, len(self.legs)):
             self.legs[i].shift(0)
